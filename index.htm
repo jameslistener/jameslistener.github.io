@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>С Днём Рождения!</title>
+    <script type="text/javascript">
+
+    	function rand(min, max) {
+			var rand = min - 0.5 + Math.random() * (max - min + 1)
+			rand = Math.round(rand);
+			return rand;
+		}
+
+    	var dots = new Array();
+    	for(i=0;i<10000;i++)
+    	{
+    		dots[i] = new Object();
+    		dots[i].x = rand(0, 800);
+    		dots[i].y = rand(0, 800);
+    	}
+
+		function update(){
+			var canvas = document.getElementById('tutorial');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+				ctx.clearRect(0,0,800,800);
+				ctx.fillStyle = 'rgba(255,100,0,1)';
+				ctx.strokeStyle = 'rgba(0,153,255,0.4)';
+				
+				for(i=0;i<10000;i++)
+				{
+					ctx.fillRect(dots[i].x,dots[i].y,5,5);
+					dots[i].x+=rand(-1,1);
+					dots[i].y+=rand(-1,1);
+				}
+
+				window.requestAnimationFrame(update);
+			}
+		}
+
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+  </head>
+  <body onload="window.requestAnimationFrame(update);">
+    <canvas width="800px" height="800px" id="tutorial"></canvas>
+  </body>
+</html>
