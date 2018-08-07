@@ -11,7 +11,7 @@
 		}
 
     	var dots = new Array();
-    	for(i=0;i<1000;i++)
+    	for(i=0;i<5000;i++)
     	{
     		dots[i] = new Object();
     		dots[i].x = rand(0, 800);
@@ -26,7 +26,7 @@
 				ctx.fillStyle = 'rgba(255,100,0,1)';
 				ctx.strokeStyle = 'rgba(0,153,255,0.4)';
 				
-				for(i=0;i<1000;i++)
+				for(i=0;i<5000;i++)
 				{
 					ctx.fillRect(dots[i].x,dots[i].y,5,5);
 					dots[i].x+=rand(-1,1);
