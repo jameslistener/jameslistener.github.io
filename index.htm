@@ -75,10 +75,10 @@
 					for(i=0;i<5000;i++)
 					{
 						vel = Math.sqrt((dots[i].whereX-dots[i].x)*(dots[i].whereX-dots[i].x) + (dots[i].whereY-dots[i].y)*(dots[i].whereY-dots[i].y))
-						dots[i].x += ((dots[i].whereX-dots[i].x)/vel)*3;
-						dots[i].y += ((dots[i].whereY-dots[i].y)/vel)*3;
-						//dots[i].x+=randRange(1);
-						//dots[i].y+=randRange(1);
+						dots[i].x += ((dots[i].whereX-dots[i].x)/vel)*1.5;
+						dots[i].y += ((dots[i].whereY-dots[i].y)/vel)*1.5;
+						dots[i].x+=randRange(2);
+						dots[i].y+=randRange(2);
 						ctx.fillRect(dots[i].x,dots[i].y,5,5);
 						
 					}
