@@ -35,12 +35,32 @@
 					dots[i] = new Object();
 					dots[i].x = rand(0, 800);
 					dots[i].y = rand(0, 800);
+					dots[i].whereX = dots[i].x;
+					dots[i].whereY = dots[i].y;
 				}
 
 				star.src = "star.bmp";
-				star.onload = function() { starData = getDataFromImage(star); };
+				star.onload = function() {
+					starData = getDataFromImage(star);
+					setDots();
+				};
 				
 				window.requestAnimationFrame(update);
+			}
+
+			function setDots()
+			{
+				var k = 0;
+				for (var i=0; i<starData.height; i+=5)
+					for (var j=0; j<starData.width; j+=5)
+					{
+						if (starData.data[(i*starData.width+j)*4] == 0)
+						{
+							dots[k].whereY = i;
+							dots[k].whereX = j;
+							k++;
+						}
+					}
 			}
 
 
@@ -54,9 +74,13 @@
 					
 					for(i=0;i<5000;i++)
 					{
+						vel = Math.sqrt((dots[i].whereX-dots[i].x)*(dots[i].whereX-dots[i].x) + (dots[i].whereY-dots[i].y)*(dots[i].whereY-dots[i].y))
+						dots[i].x += (dots[i].whereX/vel)*3;
+						dots[i].y += (dots[i].whereY/vel)*3;
+						//dots[i].x+=randRange(1);
+						//dots[i].y+=randRange(1);
 						ctx.fillRect(dots[i].x,dots[i].y,5,5);
-						dots[i].x+=rand(-1,1);
-						dots[i].y+=rand(-1,1);
+						
 					}
 
 					window.requestAnimationFrame(update);
