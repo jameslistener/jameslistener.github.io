@@ -51,6 +51,7 @@
 			function setDots()
 			{
 				var k = 0;
+				var str = "";
 				for (var i=0; i<starData.height; i+=5)
 					for (var j=0; j<starData.width; j+=5)
 					{
@@ -58,9 +59,13 @@
 						{
 							dots[k].whereY = i;
 							dots[k].whereX = j;
+							str += "dots["+k+"].whereY="+i+"; dots["+k+"].whereX="+j+"; ";
 							k++;
 						}
 					}
+				str += "dotsMainCount="+k+";";
+				var code = document.getElementById('code');
+				code.innerHTML = str;
 			}
 
 
@@ -79,7 +84,7 @@
 						dots[i].y += ((dots[i].whereY-dots[i].y)/vel)*1.5;
 						dots[i].x+=randRange(1);
 						dots[i].y+=randRange(1);
-						ctx.fillRect(dots[i].x,dots[i].y,5,5);
+						ctx.fillRect(dots[i].x,dots[i].y,3,3);
 						
 					}
 
@@ -94,5 +99,6 @@
 	</head>
 	<body onload="init();">
 		<canvas width="800px" height="800px" id="tutorial"></canvas>
+		<div id="code"></div>
 	</body>
 </html>
