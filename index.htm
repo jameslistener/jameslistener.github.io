@@ -16,6 +16,7 @@
 
 			var dotsMax = 2000;
 			var dotSize = 5;
+			var dotShiver = 5;
 			var dots = new Array();
 
 			function setDots()
@@ -42,6 +43,12 @@
 						dots[i].whereY = dots[tmp].whereY;
 					}
 				}
+
+				for (var i=0; i<dotsMax; i++)
+					{
+						dots[i].joyX = dots[i].whereX;
+						dots[i].joyY = dots[i].whereY;
+					}
 			}
 
 			function init()
@@ -53,6 +60,8 @@
 					dots[i].y = rand(0, 800);
 					dots[i].whereX = dots[i].x;
 					dots[i].whereY = dots[i].y;
+					dots[i].joyX = dots[i].x;
+					dots[i].joyY = dots[i].y;
 				}
 
 				setDots();
@@ -70,13 +79,19 @@
 					
 					for(i=0;i<dotsMax;i++)
 					{
-						vel = Math.sqrt((dots[i].whereX-dots[i].x)*(dots[i].whereX-dots[i].x) + (dots[i].whereY-dots[i].y)*(dots[i].whereY-dots[i].y))
-						dots[i].x += ((dots[i].whereX-dots[i].x)/vel)*1.5;
-						dots[i].y += ((dots[i].whereY-dots[i].y)/vel)*1.5;
-						dots[i].x+=randRange(1);
-						dots[i].y+=randRange(1);
+						dots[i].joyX += randRange(2);
+						dots[i].joyY += randRange(2);
+
+						if (Math.abs(dots[i].x-dots[i].whereX)>dotShiver)
+							dots[i].joyX = dots[i].whereX;
+						if (Math.abs(dots[i].y-dots[i].whereY)>dotShiver)
+							dots[i].joyY = dots[i].whereY;
+
+						vel = Math.sqrt((dots[i].joyX-dots[i].x)*(dots[i].joyX-dots[i].x) + (dots[i].joyY-dots[i].y)*(dots[i].joyY-dots[i].y))
+						dots[i].x += ((dots[i].joyX-dots[i].x)/vel)*2;
+						dots[i].y += ((dots[i].joyY-dots[i].y)/vel)*2;
+
 						ctx.fillRect(dots[i].x,dots[i].y, dotSize, dotSize);
-						
 					}
 
 					window.requestAnimationFrame(update);
