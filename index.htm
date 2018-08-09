@@ -203,38 +203,15 @@
 				}
 				else if (stage == 800)
 				{
-					dotShiver = 100;
-					dotSpeed = 4;
+					dotShiver = 200;
+					dotSpeed = 2;
+					shuffle(dots);
 				}
-				else if (stage == 820)
+				else if (stage >= 820 && stage <= 900)
 				{
 					var oldMax = dotsMax;
-					initDots(3000);
-					setDots(oldMax, 3000);
-				}
-				else if (stage == 840)
-				{
-					var oldMax = dotsMax;
-					initDots(2500);
-					setDots(oldMax, 2500);
-				}
-				else if (stage == 860)
-				{
-					var oldMax = dotsMax;
-					initDots(2000);
-					setDots(oldMax, 2000);
-				}
-				else if (stage == 880)
-				{
-					var oldMax = dotsMax;
-					initDots(1500);
-					setDots(oldMax, 1500);
-				}
-				else if (stage == 900)
-				{
-					var oldMax = dotsMax;
-					initDots(1000);
-					setDots(oldMax, 1000);
+					initDots(dotsMax-30);
+					setDots(oldMax, dotsMax-30);
 				}
 				else if (stage == 920)
 				{
@@ -243,18 +220,21 @@
 					setTimeout(setDotsMe,stageTime);
 					shuffle(dots);
 				}
-				else if (stage == 960)
-				{
-					dotShiver = 100;
-					dotSpeed = 1;
-					setDotsMixedUp(2, screenW, screenH);
-				}
-				else if (stage == 970)
+				else if (stage >= 990 && stage <= 130)
 				{
 					var oldMax = dotsMax;
-					initDots(0);
-					setDots(oldMax, 0);
+					initDots(dotsMax-30);
+					setDots(oldMax, dotsMax-30);
 				}
+				/*else if (stage == 990)
+				{
+					dotShiver = 200;
+					dotSpeed = 2;
+					fadingSpeed = 0.002;
+					dotsPreviousMax = dotsMax;
+					dotsMax = 0;
+					startFading();
+				}*/
 
 				setTimeout(dotsTimeTable, stageTime);
 				stage++;
@@ -408,12 +388,12 @@ setDots(oldMax, 1049);
 						dots[i].whereY = randRange(screenH);
 					}
 				}
-
+/*
 				for (var i=0; i<oldMax; i++)
 					{
 						dots[i].joyX = dots[i].whereX;
 						dots[i].joyY = dots[i].whereY;
-					}
+					}*/
 			}
 
 			function init()
