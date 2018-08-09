@@ -37,7 +37,7 @@
 					dots[i].whereY = dots[i].y;
 				}
 
-				img.src = "kate.bmp";
+				img.src = "che.bmp";
 				img.onload = function() {
 					imgData = getDataFromImage(img);
 					setDots();
@@ -52,7 +52,7 @@
 				for (var i=0; i<imgData.height; i+=5)
 					for (var j=0; j<imgData.width; j+=5)
 					{
-						if (imgData.data[(i*imgData.width+j)*4] == 0)
+						if (imgData.data[(i*imgData.width+j)*4] <= 100)
 						{
 							dots[k].whereY = i;
 							dots[k].whereX = j;
