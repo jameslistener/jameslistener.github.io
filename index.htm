@@ -19,6 +19,17 @@
 				return Math.random() * 2 * amplitude - amplitude;
 			}
 
+			function shuffle(a) {
+				var j, x, i;
+				for (i = dotsMax - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					x = a[i];
+					a[i] = a[j];
+					a[j] = x;
+				}
+				return a;
+			}
+
 			var dotsMax = 1000;
 			var dotsShouldBe = dotsMax;
 			var dotsPreviousMax = dotsMax;
@@ -63,7 +74,7 @@
 				}
 			}
 
-			var stage = -80;
+			var stage = -70;
 			var stageTime = 100;
 
 			function dotsTimeTable()
@@ -76,7 +87,7 @@
 				}*/
 
 				d = div(stage,10);
-				if (stage == -80)
+				if (stage == -70)
 				{
 					dotShiver = 30;
 					setDotsMixedUp(2, 500, 500);
@@ -86,55 +97,165 @@
 					dotShiver = 8;
 					setTimeout(setDots5,stageTime);
 				}
-				else if (stage == 10)
+				else if (stage == 20)
 				{
+					shuffle(dots);
 					setTimeout(setDots4,stageTime);
-				}
-				else if (stage == 30)
-				{
-					setTimeout(setDots3,stageTime);
 				}
 				else if (stage == 50)
 				{
+					shuffle(dots);
+					setTimeout(setDots3,stageTime);
+				}
+				else if (stage == 80)
+				{
+					shuffle(dots);
 					setTimeout(setDots2,stageTime);
 				}
-				else if (stage == 70)
+				else if (stage == 110)
 				{
+					shuffle(dots);
 					setTimeout(setDots1,stageTime);
 				}
-				else if (stage == 90)
+				else if (stage == 140)
 				{
+					shuffle(dots);
 					setTimeout(setDots0,stageTime);
 				}
-				else if (stage == 110)
+				else if (stage == 170)
 				{
 					dotShiver = 200;
 					dotSpeed = 4;
 				}
-				else if (stage == 150)
+				else if (stage == 210)
 				{
+					shuffle(dots);
 					setTimeout(setDotsKate,stageTime);
 				}
-				else if (stage == 180)
+				else if (stage == 240)
 				{
 					dotShiver = 3;
 					dotSpeed = 2;
 				}
-				else if (stage == 220)
+				else if (stage == 280)
 				{
 					dotShiver = 100;
 					dotSpeed = 4;
 				}
-				else if (stage == 240)
+				else if (stage == 310)
 				{
-					setDotsMixedUp(3, 700, 500);
+					shuffle(dots);
+					setTimeout(setDotsHB,stageTime);
 				}
-				else if (stage == 280)
+				else if (stage == 340)
 				{
+					dotShiver = 3;
+					dotSpeed = 2;
+				}
+				else if (stage == 370)
+				{
+					dotShiver = 100;
+					dotSpeed = 4;
+				}
+				else if (stage == 400)
+				{
+					shuffle(dots);
+					setTimeout(setDotsLove,stageTime);
+				}
+				else if (stage == 430)
+				{
+					dotShiver = 3;
+					dotSpeed = 2;
+				}
+				else if (stage == 480)
+				{
+					dotShiver = 100;
+					dotSpeed = 4;
+				}
+				else if (stage == 510)
+				{
+					shuffle(dots);
+					setTimeout(setDotsHeart,stageTime);
+				}
+				else if (stage == 540)
+				{
+					dotShiver = 8;
+					dotSpeed = 2;
+				}
+				else if (stage == 600)
+				{
+					shuffle(dots);
 					dotShiver = 3;
 					dotSpeed = 2;
 					setTimeout(setDotsKateFace2,stageTime);
 				}
+				else if (stage == 660)
+				{
+					shuffle(dots);
+					dotShiver = 8;
+					setTimeout(setDotsHeart,stageTime);
+				}
+				else if (stage == 720)
+				{
+					shuffle(dots);
+					dotShiver = 3;
+					setTimeout(setDotsKateFace2,stageTime);
+				}
+				else if (stage == 800)
+				{
+					dotShiver = 100;
+					dotSpeed = 4;
+				}
+				else if (stage == 820)
+				{
+					var oldMax = dotsMax;
+					initDots(3000);
+					setDots(oldMax, 3000);
+				}
+				else if (stage == 840)
+				{
+					var oldMax = dotsMax;
+					initDots(2500);
+					setDots(oldMax, 2500);
+				}
+				else if (stage == 860)
+				{
+					var oldMax = dotsMax;
+					initDots(2000);
+					setDots(oldMax, 2000);
+				}
+				else if (stage == 880)
+				{
+					var oldMax = dotsMax;
+					initDots(1500);
+					setDots(oldMax, 1500);
+				}
+				else if (stage == 900)
+				{
+					var oldMax = dotsMax;
+					initDots(1000);
+					setDots(oldMax, 1000);
+				}
+				else if (stage == 920)
+				{
+					dotShiver = 5;
+					dotSpeed = 2;
+					setTimeout(setDotsMe,stageTime);
+					shuffle(dots);
+				}
+				else if (stage == 960)
+				{
+					dotShiver = 100;
+					dotSpeed = 1;
+					setDotsMixedUp(2, screenW, screenH);
+				}
+				else if (stage == 970)
+				{
+					var oldMax = dotsMax;
+					initDots(0);
+					setDots(oldMax, 0);
+				}
+
 				setTimeout(dotsTimeTable, stageTime);
 				stage++;
 			}
@@ -283,8 +404,8 @@ setDots(oldMax, 1049);
 					for (var i=dotsMainCount; i<oldMax; i++)
 					{
 						tmp = rand(0, dotsMainCount-1);
-						dots[i].whereX = dots[tmp].whereX;
-						dots[i].whereY = dots[tmp].whereY;
+						dots[i].whereX = randRange(screenW);
+						dots[i].whereY = randRange(screenH);
 					}
 				}
 
