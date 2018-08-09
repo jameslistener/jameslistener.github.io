@@ -218,23 +218,23 @@
 					dotShiver = 5;
 					dotSpeed = 2;
 					setTimeout(setDotsMe,stageTime);
+				}
+				/*else if (stage >= 990 && stage <= 1030)
+				{
 					shuffle(dots);
-				}
-				else if (stage >= 990 && stage <= 1030)
-				{
 					var oldMax = dotsMax;
-					initDots(dotsMax-30);
-					setDots(oldMax, dotsMax-30);
-				}
-				/*else if (stage == 990)
+					initDots(dotsMax-10);
+					setDots(oldMax, dotsMax-10);
+				}*/
+				else if (stage == 990)
 				{
-					dotShiver = 200;
-					dotSpeed = 2;
-					fadingSpeed = 0.002;
+					dotShiver = 300;
+					dotSpeed = 1;
+					fadingSpeed = 0.001;
 					dotsPreviousMax = dotsMax;
 					dotsMax = 0;
 					startFading();
-				}*/
+				}
 
 				setTimeout(dotsTimeTable, stageTime);
 				stage++;
