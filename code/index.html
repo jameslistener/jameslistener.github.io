@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
 	<head>
-		<title>С Днём Рождения!</title>
+		<title>Getting coords for particles</title>
 		<script type="text/javascript">
 
 			function rand(min, max) {
@@ -25,37 +25,34 @@
 			}
 
 			var dots = new Array();
-			var star = new Image();
-			var starData;
+			var img = new Image();
+			var imgData;
 
 			function init()
 			{
 				for(i=0;i<5000;i++)
 				{
 					dots[i] = new Object();
-					dots[i].x = rand(0, 800);
-					dots[i].y = rand(0, 800);
 					dots[i].whereX = dots[i].x;
 					dots[i].whereY = dots[i].y;
 				}
 
-				star.src = "star.bmp";
-				star.onload = function() {
-					starData = getDataFromImage(star);
+				img.src = "star.bmp";
+				img.onload = function() {
+					imgData = getDataFromImage(img);
 					setDots();
 				};
-				
-				window.requestAnimationFrame(update);
 			}
 
 			function setDots()
 			{
 				var k = 0;
 				var str = "";
-				for (var i=0; i<starData.height; i+=5)
-					for (var j=0; j<starData.width; j+=5)
+				
+				for (var i=0; i<imgData.height; i+=5)
+					for (var j=0; j<imgData.width; j+=5)
 					{
-						if (starData.data[(i*starData.width+j)*4] == 0)
+						if (imgData.data[(i*imgData.width+j)*4] == 0)
 						{
 							dots[k].whereY = i;
 							dots[k].whereX = j;
@@ -63,33 +60,13 @@
 							k++;
 						}
 					}
-				str += "dotsMainCount="+k+";";
+
+				str = "var oldMax = dotsMax;<br/>initDots("+k+");<br/>" + str + "<br/>setDots(oldMax, "+k+");";
 				var code = document.getElementById('code');
 				code.innerHTML = str;
-			}
 
-
-			function update(){
-				var canvas = document.getElementById('tutorial');
-				if (canvas.getContext){
-					var ctx = canvas.getContext('2d');
-					ctx.clearRect(0,0,800,800);
-					ctx.fillStyle = 'rgba(255,100,0,1)';
-					ctx.strokeStyle = 'rgba(0,153,255,0.4)';
-					
-					for(i=0;i<5000;i++)
-					{
-						vel = Math.sqrt((dots[i].whereX-dots[i].x)*(dots[i].whereX-dots[i].x) + (dots[i].whereY-dots[i].y)*(dots[i].whereY-dots[i].y))
-						dots[i].x += ((dots[i].whereX-dots[i].x)/vel)*1.5;
-						dots[i].y += ((dots[i].whereY-dots[i].y)/vel)*1.5;
-						dots[i].x+=randRange(1);
-						dots[i].y+=randRange(1);
-						ctx.fillRect(dots[i].x,dots[i].y,3,3);
-						
-					}
-
-					window.requestAnimationFrame(update);
-				}
+				var image = document.getElementById('image');
+				image.innerHTML = img.src;
 			}
 
 		</script>
@@ -98,7 +75,8 @@
 		</style>
 	</head>
 	<body onload="init();">
-		<canvas width="800px" height="800px" id="tutorial"></canvas>
+		<h1>Getting coords for particles</h1>
+		<div id="image"></div>
 		<div id="code"></div>
 	</body>
 </html>
