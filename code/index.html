@@ -65,7 +65,7 @@
 				var code1 = document.getElementById('code1');
 				img1.onload = function() {
 					imgData1 = getDataFromImage(img1);
-					setDots(code1);
+					setDots(code1,imgData1);
 				};
 				
 				img2.src = "1.bmp";
@@ -74,7 +74,7 @@
 				var code2 = document.getElementById('code2');
 				img2.onload = function() {
 					imgData2 = getDataFromImage(img2);
-					setDots(code2);
+					setDots(code2,imgData2);
 				};
 
 				img3.src = "2.bmp";
@@ -83,7 +83,7 @@
 				var code3 = document.getElementById('code3');
 				img3.onload = function() {
 					imgData3 = getDataFromImage(img3);
-					setDots(code3);
+					setDots(code3,imgData3);
 				};
 
 				img4.src = "3.bmp";
@@ -92,7 +92,7 @@
 				var code4 = document.getElementById('code4');
 				img4.onload = function() {
 					imgData4 = getDataFromImage(img4);
-					setDots(code4);
+					setDots(code4,imgData4);
 				};
 
 				img5.src = "4.bmp";
@@ -101,7 +101,7 @@
 				var code5 = document.getElementById('code5');
 				img5.onload = function() {
 					imgData5 = getDataFromImage(img5);
-					setDots(code5);
+					setDots(code5,imgData5);
 				};
 
 				img6.src = "5.bmp";
@@ -110,7 +110,7 @@
 				var code6 = document.getElementById('code6');
 				img6.onload = function() {
 					imgData6 = getDataFromImage(img6);
-					setDots(code6);
+					setDots(code6,imgData6);
 				};
 
 				img7.src = "kate.bmp";
@@ -119,7 +119,7 @@
 				var code7 = document.getElementById('code7');
 				img7.onload = function() {
 					imgData7 = getDataFromImage(img7);
-					setDots(code7);
+					setDots(code7,imgData7);
 				};
 
 				img8.src = "happybirthday.bmp";
@@ -128,7 +128,7 @@
 				var code8 = document.getElementById('code8');
 				img8.onload = function() {
 					imgData8 = getDataFromImage(img8);
-					setDots(code8);
+					setDots(code8,imgData8);
 				};
 
 				img9.src = "love.bmp";
@@ -137,7 +137,7 @@
 				var code9 = document.getElementById('code9');
 				img9.onload = function() {
 					imgData9 = getDataFromImage(img9);
-					setDots(code9);
+					setDots(code9,imgData9);
 				};
 
 				img10.src = "heart.bmp";
@@ -146,7 +146,7 @@
 				var code10 = document.getElementById('code10');
 				img10.onload = function() {
 					imgData10 = getDataFromImage(img10);
-					setDots(code10);
+					setDots(code10,imgData10);
 				};
 
 				img11.src = "kate_face2.bmp";
@@ -155,7 +155,7 @@
 				var code11 = document.getElementById('code11');
 				img11.onload = function() {
 					imgData11 = getDataFromImage(img11);
-					setDots(code11);
+					setDots(code11,imgData11);
 				};
 
 				img12.src = "me.bmp";
@@ -164,11 +164,11 @@
 				var code12 = document.getElementById('code12');
 				img12.onload = function() {
 					imgData12 = getDataFromImage(img12);
-					setDots(code12);
+					setDots(code12,imgData12);
 				};
 			}
 
-			function setDots(code)
+			function setDots(code, imgData)
 			{
 				var k = 0;
 				var str = "";
