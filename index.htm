@@ -30,6 +30,23 @@
 				return a;
 			}
 
+			var color = new Object();
+			color.r = 255;
+			color.g = 255;
+			color.b = 255;
+
+			var oldcolor = new Object();
+			oldcolor.r = 255;
+			oldcolor.g = 255;
+			oldcolor.b = 255;
+
+			function setColor(r,g,b)
+			{
+				color.r = r;
+				color.g = g;
+				color.b = b;
+			}
+
 			var dotsMax = 1000;
 			var dotsShouldBe = dotsMax;
 			var dotsPreviousMax = dotsMax;
@@ -77,6 +94,7 @@
 			var stage = -70;
 			var stageTime = 100;
 
+			setColor(0,0,0);
 			function dotsTimeTable()
 			{
 				/*if (stage == -100)
@@ -129,6 +147,7 @@
 				}
 				else if (stage == 210)
 				{
+					setColor(250,39,187);
 					shuffle(dots);
 					setTimeout(setDotsKate,stageTime);
 				}
@@ -144,6 +163,7 @@
 				}
 				else if (stage == 310)
 				{
+					setColor(157,31,241);
 					shuffle(dots);
 					setTimeout(setDotsHB,stageTime);
 				}
@@ -159,6 +179,7 @@
 				}
 				else if (stage == 400)
 				{
+					setColor(235,220,33);
 					shuffle(dots);
 					setTimeout(setDotsLove,stageTime);
 				}
@@ -174,6 +195,7 @@
 				}
 				else if (stage == 510)
 				{
+					setColor(220,50,30);
 					shuffle(dots);
 					setTimeout(setDotsHeart,stageTime);
 				}
@@ -184,6 +206,7 @@
 				}
 				else if (stage == 600)
 				{
+					setColor(23,135,200);
 					shuffle(dots);
 					dotShiver = 3;
 					dotSpeed = 2;
@@ -191,12 +214,14 @@
 				}
 				else if (stage == 660)
 				{
+					setColor(220,50,30);
 					shuffle(dots);
 					dotShiver = 6;
 					setTimeout(setDotsHeart,stageTime);
 				}
 				else if (stage == 720)
 				{
+					setColor(23,135,200);
 					shuffle(dots);
 					dotShiver = 3;
 					setTimeout(setDotsKateFace2,stageTime);
@@ -215,6 +240,7 @@
 				}
 				else if (stage == 920)
 				{
+					setColor(32,193,182);
 					dotShiver = 5;
 					dotSpeed = 2;
 					setTimeout(setDotsMe,stageTime);
@@ -228,6 +254,7 @@
 				}*/
 				else if (stage == 990)
 				{
+					setColor(0,0,0);
 					dotShiver = 300;
 					dotSpeed = 1;
 					fadingSpeed = 0.001;
@@ -421,8 +448,7 @@ setDots(oldMax, 1049);
 				if (canvas.getContext){
 					var ctx = canvas.getContext('2d');
 					ctx.clearRect(0,0,screenW,screenH);
-					ctx.fillStyle = 'rgba(255,100,0,1)';
-					ctx.strokeStyle = 'rgba(0,153,255,0.4)';
+					ctx.fillStyle = 'rgba('+oldcolor.r+','+oldcolor.g+','+oldcolor.b+',1)';
 					
 					for(i=0;i<dotsMax;i++)
 					{
@@ -445,7 +471,7 @@ setDots(oldMax, 1049);
 
 					if (fadingDots)
 					{
-						ctx.fillStyle = 'rgba(255,100,0,'+fadingMoment+')';
+						ctx.fillStyle = 'rgba('+oldcolor.r+','+oldcolor.g+','+oldcolor.b+','+fadingMoment+')';
 						for(i=dotsMax;i<dotsPreviousMax;i++)
 						{
 							dots[i].joyX += randRange(2);
@@ -468,6 +494,11 @@ setDots(oldMax, 1049);
 
 					if (fadingMoment < 0)
 						fadingDots = false;
+
+					vel = Math.sqrt((color.r-oldcolor.r)*(color.r-oldcolor.r)+(color.g-oldcolor.g)*(color.g-oldcolor.g)+(color.b-oldcolor.b)*(color.b-oldcolor.b));
+					oldcolor.r += ((color.r-oldcolor.r)/vel)*2;
+					oldcolor.g += ((color.g-oldcolor.g)/vel)*2;
+					oldcolor.b += ((color.b-oldcolor.b)/vel)*2;
 
 					window.requestAnimationFrame(update);
 				}
